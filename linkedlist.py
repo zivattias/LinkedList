@@ -96,7 +96,10 @@ class LinkedList:
 
     # Append implementation:
     def append(self, value):
+        if not isinstance(value, Node):
         new_node = Node(value)
+        else:
+            new_node = value
 
         if self.head is None:
             self.head = new_node
