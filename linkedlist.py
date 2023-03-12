@@ -146,8 +146,8 @@ class LinkedList:
 
     # Remove node from a specific index:
     def remove(self, index: int):
-        if index < 0 or index > len(self):
-            raise IndexError("Deletion index out of range")
+        if index < 0 or index >= len(self):
+            raise IndexError("Removal index out of range")
 
         if index == 0:
             node = self.head
