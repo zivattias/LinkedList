@@ -116,7 +116,10 @@ class LinkedList:
         if index < 0 or index > len(self):
             raise IndexError("Insertion index out of range")
 
+        if not isinstance(value, Node):
         new_node = Node(value)
+        else:
+            new_node = value
 
         if index == 0:
             new_node.next = self.head
