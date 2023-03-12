@@ -135,7 +135,12 @@ class LinkedList:
             new_node.next = current_node.next
             new_node.previous = current_node
             current_node.next = new_node
-            new_node.next.previous = new_node
+            # new_node.next = current_node.next = None for tails, hence checking if it's not the tail:
+            if new_node.next is not None:
+                new_node.next.previous = new_node
+            # if it is, update the tail:
+            else:
+                self.tail = new_node
 
         self.len += 1
 
@@ -153,7 +158,12 @@ class LinkedList:
             for _ in range(index):
                 current_node = current_node.next
             current_node.previous.next = current_node.next
-            current_node.next.previous = current_node.previous
+            # current_node.next = None for tails, hence checking if it's not the tail:
+            if current_node.next is not None:
+                current_node.next.previous = current_node.previous
+            # if it is, update the tail:
+            else:
+                self.tail = current_node.previous
             del current_node
 
         self.len -= 1
