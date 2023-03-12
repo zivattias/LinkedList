@@ -157,3 +157,15 @@ class LinkedList:
             del current_node
 
         self.len -= 1
+
+    # Combine 2 (two) LinkedLists into 1 (one) new LinkedList, available for variable assignment
+    def __add__(self, other):
+        if not isinstance(other, LinkedList):
+            raise TypeError(
+                f"unsupported operand type(s) for +: 'LinkedList' and '{type(other).__name__}'"
+            )
+        new_list = LinkedList()
+        for a, b in zip(self, other):
+            new_list.append(a)
+            new_list.append(b)
+        return new_list
