@@ -22,7 +22,7 @@ class Node:
 
     @next.setter
     def next(self, node: Node):
-        self.next = node
+        self.__next = node
 
     @property
     def previous(self) -> Optional[Node]:
@@ -30,7 +30,7 @@ class Node:
 
     @previous.setter
     def previous(self, node: Node):
-        self.previous = node
+        self.__previous = node
 
     @property
     def value(self):
@@ -38,7 +38,7 @@ class Node:
 
     @value.setter
     def value(self, value):
-        self.value = value
+        self.__value = value
 
 
 class LinkedList:
@@ -59,7 +59,7 @@ class LinkedList:
 
     @head.setter
     def head(self, node: Node):
-        self.head = node
+        self.__head = node
 
     @property
     def tail(self) -> Optional[Node]:
@@ -67,7 +67,7 @@ class LinkedList:
 
     @tail.setter
     def tail(self, node: Node):
-        self.tail = node
+        self.__tail = node
 
     @property
     def len(self) -> int:
@@ -75,19 +75,19 @@ class LinkedList:
 
     @len.setter
     def len(self, value: int):
-        self.len = value
+        self.__len = value
 
     # Iterator protocol implementation:
     def __iter__(self):
-        self.current_node = self.head
+        self.__current_node = self.head
         return self
 
     def __next__(self):
-        if self.current_node is None:
-            return StopIteration
+        if self.__current_node is None:
+            raise StopIteration
 
-        value = self.current_node.value
-        self.current_node = self.current_node.next
+        value = self.__current_node.value
+        self.__current_node = self.__current_node.next
         return value
 
     # Iterator length:
@@ -97,7 +97,7 @@ class LinkedList:
     # Append implementation:
     def append(self, value):
         if not isinstance(value, Node):
-        new_node = Node(value)
+            new_node = Node(value)
         else:
             new_node = value
 
@@ -120,7 +120,7 @@ class LinkedList:
             raise IndexError("Insertion index out of range")
 
         if not isinstance(value, Node):
-        new_node = Node(value)
+            new_node = Node(value)
         else:
             new_node = value
 
@@ -135,7 +135,7 @@ class LinkedList:
             new_node.next = current_node.next
             new_node.previous = current_node
             current_node.next = new_node
-            current_node.next.previous = new_node
+            new_node.next.previous = new_node
 
         self.len += 1
 
