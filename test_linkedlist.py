@@ -94,6 +94,7 @@ class TestLinkedListMethods(unittest.TestCase):
         self.assertRaises(IndexError, self.linkedlist3.remove, 10)
         self.linkedlist3.remove(3)
         self.assertEqual(self.linkedlist3.tail.value, 3)
+        self.assertEqual(len(self.linkedlist3), 3)
 
     # Contact 2 LinkedLists together, testing length, values and indexes
     def test_contact(self):
