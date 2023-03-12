@@ -175,7 +175,10 @@ class LinkedList:
                 f"unsupported operand type(s) for +: 'LinkedList' and '{type(other).__name__}'"
             )
         new_list = LinkedList()
-        for a, b in zip(self, other):
-            new_list.append(a)
-            new_list.append(b)
+
+        for node in self:
+            new_list.append(node)
+        for node in other:
+            new_list.append(node)
+
         return new_list
