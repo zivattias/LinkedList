@@ -51,6 +51,8 @@ class LinkedList:
             for item in iterable:
                 self.append(item)
 
+        self.__current_node: Optional[Node] = self.__head
+
     @property
     def head(self) -> Optional[Node]:
         return self.__head
