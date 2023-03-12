@@ -109,7 +109,7 @@ class LinkedList:
         self.tail = new_node
         self.len += 1
 
-    # Insert value at a specific index:
+    # Insert node at a specific index:
     def insert(self, value, index: int):
         if index < 0 or index > len(self):
             raise IndexError("Insertion index out of range")
@@ -123,7 +123,29 @@ class LinkedList:
             current_node = self.head
             for _ in range(index - 1):
                 current_node = current_node.next
+
             new_node.next = current_node.next
             new_node.previous = current_node
             current_node.next = new_node
             current_node.next.previous = new_node
+
+        self.len += 1
+
+    # Remove node from a specific index:
+    def remove(self, index: int):
+        if index < 0 or index > len(self):
+            raise IndexError("Deletion index out of range")
+
+        if index == 0:
+            node = self.head
+            self.head = node.next
+            del node
+        else:
+            current_node = self.head
+            for _ in range(index):
+                current_node = current_node.next
+            current_node.previous.next = current_node.next
+            current_node.next.previous = current_node.previous
+            del current_node
+
+        self.len -= 1
