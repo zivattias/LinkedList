@@ -168,6 +168,32 @@ class LinkedList:
 
         self.len -= 1
 
+    # Returns a new LinkedList with all the elements from the original LinkedList, reversed - doubly
+    def reverse(self: LinkedList) -> LinkedList:
+        reversed_list = LinkedList()
+        current = self.tail
+
+        while current is not None:
+            reversed_list.append(current.value)
+            current = current.previous
+
+        return reversed_list
+
+    # Returns a new LinkedList with all the elements from the original LinkedList, reversed - singly - WIP
+    def singly_reverse(self: LinkedList) -> LinkedList:
+        reversed_list = LinkedList()
+        current = self.head
+
+        while current is not None:
+            new_node = Node(current.value)
+
+            new_node.next = reversed_list.head
+            reversed_list.head = new_node
+
+            current = current.next
+
+        return reversed_list
+
     # Combine 2 (two) LinkedLists into 1 (one) new LinkedList, available for variable assignment
     def __add__(self, other):
         if not isinstance(other, LinkedList):
